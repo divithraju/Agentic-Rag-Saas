@@ -1,0 +1,2 @@
+{"tenant_key": "demo-key-tenant-a", "question": "What is the refund window for annual plans?", "expected_source": "policies/refunds.md", "must_include": ["30 days"]}
+{"tenant_key": "demo-key-tenant-a", "question": "Who approves purchases above $10,000?", "expected_source": "policies/procurement.md", "must_include": ["finance"]}

@@ -1,0 +1,15 @@
+# Self-hosted inference on an NVIDIA GPU node (OpenAI-compatible API via vLLM)
+services:
+  vllm:
+    image: vllm/vllm-openai:latest
+    command: ["--model", "meta-llama/Llama-3.1-8B-Instruct", "--max-model-len", "8192"]
+    environment:
+      HUGGING_FACE_HUB_TOKEN: ${HF_TOKEN:-}
+    deploy:
+      resources:
+        reservations:
+          devices: [{ driver: nvidia, count: all, capabilities: [gpu] }]
+    ports: ["8001:8000"]
+  api:
+    environment:
+      SELF_HOSTED_URL: http://vllm:8000/v1
